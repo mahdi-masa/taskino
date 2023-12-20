@@ -85,7 +85,7 @@
 								<div class="text-center text-muted text-uppercase fw-bolder mb-5 iransans-100">یا</div>
 								<!--end::Separator-->
 								<!--begin::گوگل link-->
-								<a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5 iransans-bold">
+								<a href="{{route('auth.google.redirect')}}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5 iransans-bold">
 								<img alt="Logo" src="{{ Vite::asset('resources/assets/general/logos/google-icon.svg')}}" class="h-20px me-3" />ادامه  با گوگل</a>
 								<!--end::گوگل link-->
 								

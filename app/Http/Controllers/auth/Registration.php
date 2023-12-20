@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginValidation;
 use App\Http\Requests\Auth\SignupValidation;
 use App\Models\User;
 use Exception;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -68,5 +69,33 @@ class Registration extends Controller
             
         }
 
+    }
+
+    public function google_redirect(){
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function google_callback(){
+        $user = Socialite::driver('google')->user();
+        
+
+        if(User::where('email', $user->email)->exists()){
+            $user_id= User::where('email', $user->email)->first()->id;
+            Auth::loginUsingId($user_id);
+
+            //TODO: redirect to proper place after user login
+            return 'user alreay exists and login automattically';
+        }else{
+            User::create([
+                'email'=>$user->email,
+            ]);
+
+            $user_id= User::where('email', $user->email)->first()->id;
+
+            Auth::loginUsingId($user_id);
+
+            //TODO: redirect to proper place after user login
+            return 'user created and login automatically';
+        }
     }
 }

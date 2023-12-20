@@ -42,7 +42,12 @@
 							<!--end::Heading-->
 							<!--begin::Actions-->
 							<button type="button" class="btn btn-light-primary fw-bolder w-100 mb-10 iransans-bold">
-							<img alt="Logo" src="{{Vite::asset('resources/assets/general/logos/google-icon.svg')}}" class="h-20px me-3" />ورود از طریق گوگل</button>
+								<img alt="Logo" src="{{Vite::asset('resources/assets/general/logos/google-icon.svg')}}" class="h-20px me-3" />
+								<a href="{{route('auth.google.redirect')}}">
+									ورود از طریق گوگل
+								</a>
+							
+							</button>
 							<!--end::Actions-->
 							<!--begin::Separator-->
 							<div class="d-flex align-items-center mb-10">

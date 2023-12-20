@@ -19,6 +19,10 @@ Route::get('/', function () {
 });
 
 Route::controller(Registration::class)->name('auth.')->prefix('auth')->group(function(){
+    Route::prefix('google')->name('google.')->group(function () {
+        Route::get('redirect', 'google_redirect')->name('redirect');
+        Route::get('callback', 'google_callback')->name('callback');
+    });
     Route::prefix('signup')->name('signup.')->group(function(){
         Route::view('index', 'auth.signup')->name('view');
         Route::post('simple', 'simple_signup')->name('simple');
