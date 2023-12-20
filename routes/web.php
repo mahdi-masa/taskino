@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\auth\Registration;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(Registration::class)->name('auth.')->prefix('auth')->group(function(){
+    Route::prefix('signup')->name('signup.')->group(function(){
+        Route::view('index', 'auth.signup')->name('view');
+        Route::post('simple', 'simple_signup')->name('simple');
+    });
+
+    Route::prefix('login')->name('login.')->group(function(){
+        Route::view('index', 'auth.login')->name('view');
+        Route::post('simple', 'simple_login')->name('simple');
+    });
 });
